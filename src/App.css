@@ -1,38 +1,202 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+*{
+  margin: 0;
+  padding: 0;
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url(./template/img/banner.png);
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+nav {
+  display: flex; /* Biến các khối con bên trong mất tính chất của block */
+  padding: 2% 6%;
+  justify-content: space-between; /* Dãn các khối con bên trong khối cha về 2 bên cùng */
+  align-items:center;
+}
+
+nav img {
+  width: 150px;
+}
+
+.nav-links{
+  flex: 1; /* Quy định những thành phần con bên trong thành phần cha sẽ co lại hoặc giản ra như thế nào. */
+  text-align: right;
+}
+
+.nav-links ul li {
+  list-style: none; /* Mất các chấm than của thẻ li */
+  display: inline-block; /* inline-block có tác dụng xác định các thành phần sẽ được hiển thị theo khối nhưng là các khối inline (xuống dòng khi vượt quá with của khối). */
+  padding: 8px 12px; /* Sử dụng được khối này vì đc chuyển về inline-block */
+  position: relative; /* Không bị ảnh hưởng bởi thẻ Cha */
+}
+
+.nav-links ul li a {
+  color: #fff;
+  text-decoration: none; /* Mất dấu gạch dưới của thẻ a */
+  font-size: 13px;
+}
+
+.nav-links ul li::after {
+  content: '';
+  width: 0%; /* Rộng bằng đúng khối cha của nó */
+  height: 2px; /* Chiều cao của khối */
+  background: #f44336;
+  display: block; /* Có block thì mới hiện ra được */
+  margin: auto;
+  transition: 0.5s;
+}
+
+.nav-links ul li:hover::after{
+  width: 100%;
+}
+
+/* ----------- tex-box ----------- */
+.text-box {
+  width: 90%;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%); /* Căn chỉnh về giữa */
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.text-box h1 {
+  font-size: 62px;
+}
+
+.text-box p {
+  margin: 10px 0 40px; /* (tren-duoi, trai-phai, cách nhau bao nhiêu) */
+  font-size: 14px;
+  color: #fff;
+}
+
+.hero-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid #fff;
+  padding:12px 34px;
+  font-size: 13px;
+  background: transparent;
+  position: relative;
+  cursor: pointer; /* Con tro chuot */
+}
+
+.hero-btn:hover {
+  border: 1px solid #f44336;
+  background: #f44336;
+  transition: 1s;
+}
+
+nav .fa{
+  display: none; /* ẩn các icon khi ở chế độ lớn */
+}
+
+@media (max-width: 700px) {
+  .text-box h1 {
+    font-size: 20px;
+  }
+
+  .nav-links ul li {
+    display: block; /* De xuống dòng */
+  }
+
+  .nav-links{
+    position: absolute;
+    background: #f44336;
+    height: 100vh;
+    width: 200px;
+    top: 0;
+    right: -210px;
+    text-align: left;
+    z-index: 2;
+    transition: 1s;
+  }
+
+  nav .fa {
+    display: block;
+    color: #fff;
+    margin:10px;
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .nav-links ul {
+    padding: 30px;
+  }
+
+}
+
+/* ----------- end tex-box ----------- */
+
+
+/* ---------- Courses ----------- */
+.course {
+  width: 80%; /* Tạo một khối ra chính giữa: width, margin, text-align */
+  margin: auto;
+  text-align: center;
+  padding-top: 100px;
+}
+
+.course h1{
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.course p{
+  color: #777;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 10px;
+}
+
+.course-row{
+  margin-top: 5%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.course-col {
+  flex-basis: 31%;
+  background: #fff3f3;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  padding: 20px 12px;
+  box-sizing: border-box; /* Muốn làm cho phần tử của mình phải giữ nguyên kích thước mặc dù có cộng thêm padding và border thì sẽ cần phải dùng đến thuộc tính box-sizing. */
+  transition: 0.5s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.course-row .course-col h3 {
+  text-align: center;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.course-col:hover {
+  box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 700px) {
+  .course-row {
+    flex-direction: column; /* Các div thành 1 cột dọc */
   }
 }
+/* ---------- EndCourses ----------- */
+
+/* ---------- Campus ----------- */
+.campus {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  padding-top: 50px;
+}
+/* ---------- End Campus ----------- */
+
